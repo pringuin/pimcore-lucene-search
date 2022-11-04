@@ -3,7 +3,7 @@
 namespace LuceneSearchBundle\Event;
 
 use Pimcore\Model\Asset;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 use VDB\Spider\Resource;
 
 class AssetResourceRestrictionEvent extends Event
