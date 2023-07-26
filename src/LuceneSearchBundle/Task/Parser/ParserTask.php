@@ -850,7 +850,7 @@ class ParserTask extends AbstractTask
         //clean up
         if (is_object($this->index) && $this->index instanceof \Zend_Search_Lucene_Proxy) {
             $this->index->removeReference();
-            unset($this->index);
+            $this->index = NULL;
             $this->log('closed frontend index references', 'debug', false);
         }
 
