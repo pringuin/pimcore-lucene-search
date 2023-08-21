@@ -33,7 +33,7 @@ class MaintenanceRunCrawlerListener implements TaskInterface
     /**
      * {@inheritdoc}
      */
-    public function execute()
+    public function execute(): void
     {
         $this->checkCrawlerCycle();
     }

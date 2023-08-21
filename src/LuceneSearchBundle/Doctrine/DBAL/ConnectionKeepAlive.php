@@ -30,7 +30,7 @@ class ConnectionKeepAlive
     /**
      * Detach Kick Event
      */
-    public function detach()
+    public function detach(): void
     {
         unregister_tick_function([$this, 'kick']);
         $this->isAttached = false;
@@ -39,7 +39,7 @@ class ConnectionKeepAlive
     /**
      * Attach Kick Event
      */
-    public function attach()
+    public function attach(): void
     {
         if ($this->isAttached || register_tick_function([$this, 'kick'])) {
             $this->isAttached = true;
@@ -51,7 +51,7 @@ class ConnectionKeepAlive
     /**
      * @param Connection $logConnection
      */
-    public function addConnection(Connection $logConnection)
+    public function addConnection(Connection $logConnection): void
     {
         $this->connections[spl_object_hash($logConnection)] = $logConnection;
     }
@@ -59,11 +59,11 @@ class ConnectionKeepAlive
     /**
      * @throws \Exception
      */
-    public function kick()
+    public function kick(): void
     {
         foreach ($this->connections as $conn) {
             try {
-                $conn->executeQuery('SELECT 1')->closeCursor();
+                $conn->executeQuery('SELECT 1')->free();
             } catch (\Exception $e) {
                 if ($conn === null || stripos($e->getMessage(), 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away') === false) {
                     throw $e;

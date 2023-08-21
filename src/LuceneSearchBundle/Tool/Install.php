@@ -48,7 +48,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function install()
+    public function install(): void
     {
         $this->installOrUpdateConfigFile();
         $this->createDirectories();
@@ -155,7 +155,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function uninstall()
+    public function uninstall(): void
     {
         if ($this->fileSystem->exists(Configuration::SYSTEM_CONFIG_FILE_PATH)) {
             $this->fileSystem->remove(Configuration::SYSTEM_CONFIG_FILE_PATH);
@@ -165,7 +165,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function isInstalled()
+    public function isInstalled(): bool
     {
         return $this->fileSystem->exists(Configuration::SYSTEM_CONFIG_FILE_PATH);
     }
@@ -173,7 +173,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function canBeInstalled()
+    public function canBeInstalled(): bool
     {
         return !$this->fileSystem->exists(Configuration::SYSTEM_CONFIG_FILE_PATH);
     }
@@ -181,7 +181,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function canBeUninstalled()
+    public function canBeUninstalled(): bool
     {
         return $this->fileSystem->exists(Configuration::SYSTEM_CONFIG_FILE_PATH);
     }
@@ -189,7 +189,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function needsReloadAfterInstall()
+    public function needsReloadAfterInstall(): bool
     {
         return false;
     }
@@ -197,7 +197,7 @@ class Install extends AbstractInstaller
     /**
      * {@inheritdoc}
      */
-    public function canBeUpdated()
+    public function canBeUpdated(): bool
     {
         $needUpdate = false;
         if ($this->fileSystem->exists(Configuration::SYSTEM_CONFIG_FILE_PATH)) {

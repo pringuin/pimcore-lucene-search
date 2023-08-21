@@ -39,7 +39,7 @@ class TaskManager
      * @param $task
      * @param $id
      */
-    public function addTask($task, $id)
+    public function addTask($task, $id): void
     {
         $this->tasks[] = ['id' => $id, 'task' => $task];
     }
@@ -47,7 +47,7 @@ class TaskManager
     /**
      * @param AbstractLogger $logger
      */
-    public function setLogger(AbstractLogger $logger)
+    public function setLogger(AbstractLogger $logger): void
     {
         $this->logger = $logger;
     }
@@ -55,7 +55,7 @@ class TaskManager
     /**
      * @param array $taskIterators
      */
-    public function setTaskIterators(array $taskIterators)
+    public function setTaskIterators(array $taskIterators): void
     {
         $this->taskIterators = $taskIterators;
     }
@@ -65,7 +65,7 @@ class TaskManager
      *
      * @throws \Exception
      */
-    public function processTaskChain($options = [])
+    public function processTaskChain($options = []): void
     {
         $processData = [];
 
@@ -104,7 +104,7 @@ class TaskManager
         $this->shutDownChain();
     }
 
-    private function bootChain()
+    private function bootChain(): void
     {
         \Pimcore::collectGarbage();
 
@@ -113,7 +113,7 @@ class TaskManager
         $this->keepAlive->attach();
     }
 
-    private function shutDownChain()
+    private function shutDownChain(): void
     {
         $this->keepAlive->detach();
     }

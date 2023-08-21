@@ -33,7 +33,7 @@
         }
     },
     "require": {
-        "pimcore/pimcore": "^10.0.0",
+        "pimcore/pimcore": "^11.0.0",
         "vdb/php-spider": "^0.6",
         "zf1/zend-search-lucene": "~1.12",
         "ocramius/package-versions": "^2.3"

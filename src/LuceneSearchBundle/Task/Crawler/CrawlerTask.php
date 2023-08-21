@@ -131,7 +131,7 @@ class CrawlerTask extends AbstractTask
     /**
      * @return bool
      */
-    public function isValid()
+    public function isValid(): bool
     {
         $filterLinks = $this->configuration->getConfig('filter');
         $crawlerConfig = $this->configuration->getConfig('crawler');
@@ -161,7 +161,7 @@ class CrawlerTask extends AbstractTask
     /**
      * @return array
      */
-    private function getInvalidLinks()
+    private function getInvalidLinks(): array
     {
         $filterLinks = $this->configuration->getConfig('filter');
 
@@ -187,7 +187,7 @@ class CrawlerTask extends AbstractTask
      * @return bool|\VDB\Spider\PersistenceHandler\PersistenceHandlerInterface
      * @throws \Exception
      */
-    public function process($previousData)
+    public function process($previousData): \VDB\Spider\PersistenceHandler\PersistenceHandlerInterface|bool
     {
         $this->logger->setPrefix($this->prefix);
 
@@ -308,7 +308,7 @@ class CrawlerTask extends AbstractTask
         $defaultHeaderElements = [
             [
                 'name' => 'Lucene-Search',
-                'value' => $this->configuration->getSystemConfig('version'),
+                'value' => 4,
                 'identifier' => 'lucene-search-bundle'
             ]
         ];
@@ -331,7 +331,7 @@ class CrawlerTask extends AbstractTask
     /**
      * @return Spider
      */
-    private function initializeSpider()
+    private function initializeSpider(): Spider
     {
         $spider = new Spider($this->seed);
         $guzzleClient = new Client($this->clientOptions);

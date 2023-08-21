@@ -2,13 +2,13 @@
 
 namespace LuceneSearchBundle\Controller\Admin;
 
-use Pimcore\Bundle\AdminBundle\Controller\AdminController;
+use Pimcore\Bundle\AdminBundle\Controller\AdminAbstractController;
 use LuceneSearchBundle\Configuration\Configuration;
 use LuceneSearchBundle\Organizer\Handler\StateHandler;
 
-class SettingsController extends AdminController
+class SettingsController extends AdminAbstractController
 {
-    public function getLogAction()
+    public function getLogAction(): \Symfony\Component\HttpFoundation\JsonResponse
     {
         $logFile = Configuration::CRAWLER_LOG_FILE_PATH;
         $data = '';
@@ -20,7 +20,7 @@ class SettingsController extends AdminController
         return $this->json(['logData' => $data]);
     }
 
-    public function getStateAction(Configuration $configManager, StateHandler $stateHandler)
+    public function getStateAction(Configuration $configManager, StateHandler $stateHandler): \Symfony\Component\HttpFoundation\JsonResponse
     {
         $canStart = true;
 
@@ -54,14 +54,14 @@ class SettingsController extends AdminController
         );
     }
 
-    public function startCrawlerAction(StateHandler $stateHandler)
+    public function startCrawlerAction(StateHandler $stateHandler): \Symfony\Component\HttpFoundation\JsonResponse
     {
         $stateHandler->forceCrawlerStartOnNextMaintenance();
 
         return $this->json(['success' => true]);
     }
 
-    public function stopCrawlerAction(StateHandler $stateHandler)
+    public function stopCrawlerAction(StateHandler $stateHandler): \Symfony\Component\HttpFoundation\JsonResponse
     {
         $stateHandler->stopCrawler(true);
 

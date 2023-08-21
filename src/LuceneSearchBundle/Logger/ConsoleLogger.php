@@ -33,7 +33,7 @@ class ConsoleLogger extends Logger
      *
      * @return void
      */
-    public function log($message, $level = 'debug', $logToBackend = true, $logToSystem = true)
+    public function log($message, $level = 'debug', $logToBackend = true, $logToSystem = true): void
     {
         parent::log($message, $level, $logToBackend, $logToSystem);
         $this->addToConsoleLog($message, $level);
@@ -47,7 +47,7 @@ class ConsoleLogger extends Logger
      *
      * @return bool
      */
-    protected function addToConsoleLog($message, $level = 'debug')
+    protected function addToConsoleLog($message, $level = 'debug'): bool
     {
         if (!$this->consoleOutput instanceof Output\OutputInterface) {
             return false;
@@ -72,5 +72,7 @@ class ConsoleLogger extends Logger
 
         $string = sprintf('<%s>' . str_replace('%', '%%', $message) . '</%s>', $debugLevel, $debugLevel);
         $this->consoleOutput->writeln($string, $this->verbosity);
+
+        return true;
     }
 }

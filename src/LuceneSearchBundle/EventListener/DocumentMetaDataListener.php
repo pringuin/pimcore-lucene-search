@@ -42,7 +42,7 @@ class DocumentMetaDataListener
     /**
      * @param GetResponseEvent $event
      */
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         if (!$this->crawlerState->isLuceneSearchCrawler()) {
             return;
@@ -50,7 +50,7 @@ class DocumentMetaDataListener
 
         $request = $event->getRequest();
 
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 

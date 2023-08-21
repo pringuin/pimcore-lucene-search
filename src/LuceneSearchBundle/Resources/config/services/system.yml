@@ -14,3 +14,8 @@ services:
     # tool crawler state
     LuceneSearchBundle\Tool\CrawlerState:
         public: true
+
+    LuceneSearchBundle\EventListener\PimcoreAdminListener:
+        tags:
+            #- { name: kernel.event_listener, event: pimcore.bundle_manager.paths.css, method: addCSSFiles }
+            - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }

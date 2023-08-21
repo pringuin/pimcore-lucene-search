@@ -33,7 +33,7 @@ class Logger implements EventSubscriberInterface
     /**
      * @return array
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             SpiderEvents::SPIDER_CRAWL_FILTER_POSTFETCH           => 'logFiltered',

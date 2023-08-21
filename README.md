@@ -8,7 +8,10 @@ Dachcom did not update this bundle for Pimcore X in favor of the [Dynamic Search
 This includes changes by [yosoDev](https://github.com/yosoDev) and [beheist](https://github.com/beheist), thanks a lot!
 
 ### Requirements
-- Pimcore >= 10.
+- Pimcore >= 11
+
+#### Pimcore 10
+Use the version 3.X for Pimcore 10
 
 #### Pimcore 5/6
 Get the Pimcore 5/6 Version [here](https://github.com/dachcom-digital/pimcore-lucene-search).
@@ -23,7 +26,7 @@ Get the Pimcore4 Version [here](https://github.com/dachcom-digital/pimcore-lucen
 
 ```json
 "require" : {
-    "pringuin/pimcore-lucene-search" : "~3.0.0"
+    "pringuin/pimcore-lucene-search" : "~4.0.0"
 }
 ```
 

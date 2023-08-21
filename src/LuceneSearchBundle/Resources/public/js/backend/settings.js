@@ -1,3 +1,5 @@
+console.log('settings are running');
+
 pimcore.registerNS('pimcore.plugin.luceneSearch.settings');
 pimcore.plugin.luceneSearch.settings = Class.create({
 
@@ -16,7 +18,7 @@ pimcore.plugin.luceneSearch.settings = Class.create({
 
         var _ = this;
 
-        this.loadMask = pimcore.globalmanager.get('loadingmask');
+        this.loadMask = false;
 
         if (!this.panel) {
 
@@ -37,7 +39,7 @@ pimcore.plugin.luceneSearch.settings = Class.create({
 
             this.panel.on('destroy', function () {
 
-                pimcore.globalmanager.remove('lucenesearch_settings');
+                //pimcore.globalmanager.remove('lucenesearch_settings');
                 Ext.TaskManager.destroy(this.task);
 
             }.bind(this));

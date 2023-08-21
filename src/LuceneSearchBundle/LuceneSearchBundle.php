@@ -27,7 +27,7 @@ class LuceneSearchBundle extends AbstractPimcoreBundle
     /**
      * {@inheritdoc}
      */
-    public function getInstaller()
+    public function getInstaller(): ?Install
     {
         return $this->container->get(Install::class);
     }
@@ -35,7 +35,7 @@ class LuceneSearchBundle extends AbstractPimcoreBundle
     /**
      * {@inheritdoc}
      */
-    public function getJsPaths()
+    public function getJsPaths(): array
     {
         return [
             '/bundles/lucenesearch/js/backend/startup.js',
@@ -46,7 +46,7 @@ class LuceneSearchBundle extends AbstractPimcoreBundle
     /**
      * {@inheritdoc}
      */
-    public function getCssPaths()
+    public function getCssPaths(): array
     {
         return [
             '/bundles/lucenesearch/css/admin.css'
