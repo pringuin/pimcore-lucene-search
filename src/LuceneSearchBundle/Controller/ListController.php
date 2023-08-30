@@ -24,7 +24,7 @@ class ListController extends FrontendController
      */
     public function getResultAction()
     {
-        $requestQuery = $this->requestStack->getMasterRequest()->query;
+        $requestQuery = $this->requestStack->getMainRequest()->query;
 
         try {
             $query = new \Zend_Search_Lucene_Search_Query_Boolean();

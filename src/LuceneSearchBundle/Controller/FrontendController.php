@@ -134,7 +134,7 @@ class FrontendController extends PimcoreFrontEndController
         $this->luceneHelper = $luceneHelper;
         $this->stringHelper = $stringHelper;
 
-        $requestQuery = $this->requestStack->getMasterRequest()->query;
+        $requestQuery = $this->requestStack->getMainRequest()->query;
 
         if (!$this->configuration->getConfig('enabled')) {
             return false;
@@ -166,9 +166,9 @@ class FrontendController extends PimcoreFrontEndController
 
                 //no language provided, try to get from requestStack.
                 if (empty($requestLang)) {
-                    $masterRequest = $this->requestStack->getMasterRequest();
+                    $masterRequest = $this->requestStack->getMainRequest();
                     if ($masterRequest) {
-                        $this->searchLanguage = $this->requestStack->getMasterRequest()->getLocale();
+                        $this->searchLanguage = $this->requestStack->getMainRequest()->getLocale();
                     } else {
                         $this->searchLanguage = \Pimcore\Tool::getDefaultLanguage();
                     }
