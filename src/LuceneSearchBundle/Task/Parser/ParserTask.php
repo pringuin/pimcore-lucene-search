@@ -330,6 +330,10 @@ class ParserTask extends AbstractTask
             'object_id'    => $objectId
         ];
 
+        if (!$html) {
+            $this->log(sprintf('not adding empty html from page: %s', $uri), 'error');
+            return false;
+        }
         $this->addHtmlToIndex($html, $originalHtml, $params);
 
         $this->log(sprintf('added html to indexer stack: %s', $uri));
