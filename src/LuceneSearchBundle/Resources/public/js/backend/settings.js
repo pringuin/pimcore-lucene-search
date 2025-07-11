@@ -18,8 +18,6 @@ pimcore.plugin.luceneSearch.settings = Class.create({
 
         var _ = this;
 
-        this.loadMask = false;
-
         if (!this.panel) {
 
             this.panel = Ext.create('Ext.panel.Panel', {
@@ -31,6 +29,11 @@ pimcore.plugin.luceneSearch.settings = Class.create({
                 layout: 'fit',
                 closable:true
 
+            });
+
+            this.loadMask = new Ext.LoadMask({
+                target: this.panel,
+                msg: t("please_wait")
             });
 
             var tabPanel = Ext.getCmp('pimcore_panel_tabs');
@@ -45,7 +48,6 @@ pimcore.plugin.luceneSearch.settings = Class.create({
             }.bind(this));
 
             this.container = Ext.create('Ext.Container', {
-
                 autoScroll: true,
                 scrollable: true,
                 layout: {
@@ -155,7 +157,7 @@ pimcore.plugin.luceneSearch.settings = Class.create({
                                                 } else {
 
                                                     button.setDisabled(false);
-                                                    _self.loadMask.hide();
+
                                                 }
 
                                                 Ext.Ajax.request({
@@ -166,10 +168,13 @@ pimcore.plugin.luceneSearch.settings = Class.create({
 
                                                         var res = Ext.decode(transport.responseText);
                                                         Ext.getCmp('stateMessage').setValue(_.parseState(res.state));
-                                                        _self.loadMask.hide();
 
                                                     }
                                                 });
+
+                                                window.setTimeout(function () {
+                                                    _self.loadMask.hide();
+                                                }, 5000);
                                             }
                                         });
                                     }.bind(this)
@@ -223,15 +228,6 @@ pimcore.plugin.luceneSearch.settings = Class.create({
                 run: this.updateCrawlerState.bind(_),
                 interval: 10000
             });
-
-            Ext.Ajax.request({
-                url: '/admin/lucene-search/settings/logs/get',
-                success: function(response){
-                    var data = Ext.decode(response.responseText);
-                    Ext.getCmp('lucenesearch_log_data').setValue(data.logData);
-                }
-            });
-
         }
 
         return this.panel;
@@ -254,6 +250,14 @@ pimcore.plugin.luceneSearch.settings = Class.create({
             }
         });
 
+        Ext.Ajax.request({
+            url: '/admin/lucene-search/settings/logs/get',
+            method: 'get',
+            success: function (response) {
+              var data = Ext.decode(response.responseText);
+              Ext.getCmp('lucenesearch_log_data').setValue(data.logData);
+            }
+        });
     },
 
     getData: function () {

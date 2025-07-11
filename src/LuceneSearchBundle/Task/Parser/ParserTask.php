@@ -680,7 +680,7 @@ class ParserTask extends AbstractTask
             //try html lang attribute
             $languages = [];
             preg_match_all('@<html[\n|\r\n]*.*?[\n|\r\n]*lang="(?P<language>\S+)"[\n|\r\n]*.*?[\n|\r\n]*>@si', $body, $languages);
-            if ($languages['language']) {
+            if (isset($languages['language'])) {
                 $l = str_replace(['_', '-'], '', $languages['language'][0]);
             }
         }
@@ -689,7 +689,7 @@ class ParserTask extends AbstractTask
             //try meta tag
             $languages = [];
             preg_match_all('@<meta\shttp-equiv="content-language"\scontent="(?P<language>\S+)"\s\/>@si', $body, $languages);
-            if ($languages['language']) {
+            if (isset($languages['language'])) {
                 //for lucene index remove '_' - this causes tokenization
                 $l = str_replace('_', '', $languages['language'][0]);
             }
@@ -714,7 +714,7 @@ class ParserTask extends AbstractTask
             $data = [];
             preg_match('@.*?;\s*charset=(.*)\s*@si', $contentType, $data);
 
-            if ($data[1]) {
+            if (isset($data[1])) {
                 $encoding = trim($data[1]);
             }
         }
@@ -724,7 +724,7 @@ class ParserTask extends AbstractTask
             $data = [];
             preg_match('@<meta\shttp-equiv="Content-Type"\scontent=".*?;\s+charset=(.*?)"\s\/>@si', $body, $data);
 
-            if ($data[1]) {
+            if (isset($data[1])) {
                 $encoding = trim($data[1]);
             }
         }
@@ -734,7 +734,7 @@ class ParserTask extends AbstractTask
             $data = [];
             preg_match('@<\?xml.*?encoding="(.*?)"\s*\?>@si', $body, $data);
 
-            if ($data[1]) {
+            if (isset($data[1])) {
                 $encoding = trim($data[1]);
             }
         }
@@ -744,7 +744,7 @@ class ParserTask extends AbstractTask
             $data = [];
             preg_match('@<meta\scharset="(.*?)"\s*>@si', $body, $data);
 
-            if ($data[1]) {
+            if (isset($data[1])) {
                 $encoding = trim($data[1]);
             }
         }

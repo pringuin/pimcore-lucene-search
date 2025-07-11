@@ -30,11 +30,13 @@ class Abort
     public function checkCrawlerState(Event $event)
     {
         if (!file_exists(Configuration::CRAWLER_PROCESS_FILE_PATH)) {
-            $this->spider->getDispatcher()->dispatch(LuceneSearchEvents::LUCENE_SEARCH_CRAWLER_INTERRUPTED,
+            $this->spider->getDispatcher()->dispatch(
                 new GenericEvent($this, [
                     'uri'          => $event->getArgument('uri'),
                     'errorMessage' => 'crawling aborted by user (tmp file while crawling has suddenly gone.)'
-                ]));
+                ]),
+                LuceneSearchEvents::LUCENE_SEARCH_CRAWLER_INTERRUPTED
+            );
         }
     }
 
